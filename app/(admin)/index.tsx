@@ -1,27 +1,15 @@
-import { useAdminDashboard } from '@/hooks/useAdminDashboard';
-import DashboardView, { Activity } from '@/components/admin/DashboardView';
+import { StyleSheet, Text, View } from "react-native";
 
-export default function Dashboard() {
-  const { data, isLoading, error, reload } = useAdminDashboard();
-
+export default function AdminScreen() {
   return (
-    <DashboardView
-      isLoading={isLoading}
-      error={error?.message ?? null}
-      activeAlerts={data?.activeAlerts ?? 0}
-      highAlerts={data?.highAlerts ?? 0}
-      affectedRegions={data?.affectedRegions ?? 0}
-      reports={data?.reportsReceived ?? 0}
-      cases={data?.casesReceived ?? 0}
-      pendingActions={data?.pendingActions ?? null}
-      activity={(data?.activity ?? null) as Activity | null}
-      latestAlerts={(data?.latestAlerts ?? []).map((a) => ({
-        id: String(a.id),
-        title: a.title,
-        area: a.area_name ?? 'Unknown area',
-        severity: String(a.severity),
-      }))}
-      onReload={reload}
-    />
+    <View style={styles.container}>
+      <Text style={styles.title}>(admin)/index</Text>
+      <Text>Coming soon</Text>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: { flex: 1, alignItems: "center", justifyContent: "center", gap: 8 },
+  title: { fontSize: 18, fontWeight: "600" },
+});

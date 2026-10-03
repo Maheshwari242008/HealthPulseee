@@ -1,15 +1,15 @@
-import { Button, Text, View } from 'react-native';
-import { useRouter, type Href } from 'expo-router';
+import { StyleSheet, Text, View } from "react-native";
 
-export default function Administration() {
-  const router = useRouter();
-
+export default function AdministrationScreen() {
   return (
-    <View style={{ flex: 1, padding: 16, paddingTop: 48, gap: 12 }}>
-      <Text style={{ fontWeight: 'bold' }}>Administration</Text>
-      <Text>Role: Administrator</Text>
-      <Text>Data is aggregated and anonymized. No personal patient information is stored.</Text>
-      <Button title="Add / manage lab authorities" onPress={() => router.push('/(admin)/lab-authority' as Href)} />
+    <View style={styles.container}>
+      <Text style={styles.title}>(admin)/administration</Text>
+      <Text>Coming soon</Text>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: { flex: 1, alignItems: "center", justifyContent: "center", gap: 8 },
+  title: { fontSize: 18, fontWeight: "600" },
+});

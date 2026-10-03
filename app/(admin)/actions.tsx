@@ -1,10 +1,15 @@
-import { Text, View } from 'react-native';
+import { StyleSheet, Text, View } from "react-native";
 
-// Placeholder so the route has a default export. Needs the gov_actions table first.
-export default function Screen() {
+export default function ActionsScreen() {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <View style={styles.container}>
+      <Text style={styles.title}>(admin)/actions</Text>
       <Text>Coming soon</Text>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: { flex: 1, alignItems: "center", justifyContent: "center", gap: 8 },
+  title: { fontSize: 18, fontWeight: "600" },
+});
