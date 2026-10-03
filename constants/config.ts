@@ -5,6 +5,10 @@ export const CONFIG = {
   GRID_SIZE: 6,
   CELL_STEP: 0.01, // ~1 km
 
+  // Area shown when the user has not chosen a home area yet (demo hotspot cell)
+  DEFAULT_AREA_LAT: 17.67,
+  DEFAULT_AREA_LON: 75.91,
+
   DEFAULT_TREND_DAYS: 14,
   REPLAY_DAYS: 14,
 
@@ -17,6 +21,9 @@ export const CONFIG = {
   PRIVACY_MIN_CASES: 3,
 
   QUERY_STALE_MS: 30_000,
+
+  // Set EXPO_PUBLIC_USE_MOCK=true in .env to build screens without Supabase / login
+  USE_MOCK: process.env.EXPO_PUBLIC_USE_MOCK === 'true',
 } as const;
 
 export const SYNC_CHANNEL = 'sync_ping_channel';
