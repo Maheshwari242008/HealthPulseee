@@ -7,11 +7,21 @@ export interface RiskLevelStyle {
   rank: number;
 }
 
+// Labels follow the design: Normal / Low activity / Moderate activity / High activity.
+// NONE means "fewer than 3 recent cases" (privacy gate), not a confirmed all-clear.
 export const RISK_LEVELS: Record<RiskLevel, RiskLevelStyle> = {
-  NONE: { label: 'No data', color: '#6B7280', background: '#E5E7EB', rank: 0 },
-  LOW: { label: 'Low', color: '#15803D', background: '#DCFCE7', rank: 1 },
-  MODERATE: { label: 'Moderate', color: '#B45309', background: '#FEF3C7', rank: 2 },
-  HIGH: { label: 'High', color: '#B91C1C', background: '#FEE2E2', rank: 3 },
+  NONE: { label: 'Normal', color: '#1E6B4B', background: '#D9EFE6', rank: 0 },
+  LOW: { label: 'Low activity', color: '#1E6B4B', background: '#D9EFE6', rank: 1 },
+  MODERATE: { label: 'Moderate activity', color: '#8A5A00', background: '#FBE8B8', rank: 2 },
+  HIGH: { label: 'High activity', color: '#B91C1C', background: '#FEE2E2', rank: 3 },
+};
+
+/** Map overlay colours per level (alpha is added by the map screen). */
+export const RISK_MAP_COLORS: Record<RiskLevel, string> = {
+  NONE: '#9CA3AF',
+  LOW: '#16A34A',
+  MODERATE: '#F59E0B',
+  HIGH: '#DC2626',
 };
 
 /** Same thresholds as calc_risk() in schema.sql. Display only; the database decides the level. */

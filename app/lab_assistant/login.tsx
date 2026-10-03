@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
 
-export default function RoleSelectionScreen() {
+export default function LoginScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>user/role-selection</Text>
+      <Text style={styles.title}>lab_assistant/login</Text>
       <Text>Coming soon</Text>
     </View>
   );
