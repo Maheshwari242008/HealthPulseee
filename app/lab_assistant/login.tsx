@@ -1,15 +1,12 @@
-import { StyleSheet, Text, View } from "react-native";
+import { AuthForm } from "@/components/AuthForm";
 
-export default function LoginScreen() {
+export default function LabLoginScreen() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>lab_assistant/login</Text>
-      <Text>Coming soon</Text>
-    </View>
+    <AuthForm
+      mode="login"
+      title="Lab login"
+      subtitle="For approved laboratory staff. Your administrator links your account to your lab."
+      requiredRole="lab"
+    />
   );
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1, alignItems: "center", justifyContent: "center", gap: 8 },
-  title: { fontSize: 18, fontWeight: "600" },
-});

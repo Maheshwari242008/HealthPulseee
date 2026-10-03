@@ -1,15 +1,18 @@
-import { StyleSheet, Text, View } from "react-native";
+import { useLocalSearchParams } from "expo-router";
+import { AuthForm } from "@/components/AuthForm";
 
 export default function LoginScreen() {
+  const { role } = useLocalSearchParams<{ role?: string }>();
+  const admin = role === "administrator";
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>(auth)/login</Text>
-      <Text>Coming soon</Text>
-    </View>
+    <AuthForm
+      mode="login"
+      title={admin ? "Health authority login" : "Welcome back"}
+      subtitle={admin ? "Administrator accounts only." : "Log in to see disease activity near you."}
+      requiredRole={admin ? "administrator" : undefined}
+      switchHref={admin ? undefined : "/signup"}
+      switchLabel="New here? Create an account"
+    />
   );
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1, alignItems: "center", justifyContent: "center", gap: 8 },
-  title: { fontSize: 18, fontWeight: "600" },
-});
