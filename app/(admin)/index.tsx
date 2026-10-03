@@ -1,32 +1,27 @@
-import { Button, ScrollView, Text, View } from 'react-native';
 import { useAdminDashboard } from '@/hooks/useAdminDashboard';
+import DashboardView, { Activity } from '@/components/admin/DashboardView';
 
-// Plain data screen. The UI teammate restyles the JSX; the hook stays the same.
 export default function Dashboard() {
   const { data, isLoading, error, reload } = useAdminDashboard();
 
   return (
-    <ScrollView contentContainerStyle={{ padding: 16, paddingTop: 48, gap: 8 }}>
-      <Text style={{ fontWeight: 'bold' }}>Dashboard</Text>
-      <Button title="Reload" onPress={reload} />
-      {isLoading && <Text>Loading...</Text>}
-      {error && <Text>Error: {error.message}</Text>}
-      {data && (
-        <View style={{ gap: 4 }}>
-          <Text>Active alerts: {data.activeAlerts} (high: {data.highAlerts})</Text>
-          <Text>Affected regions: {data.affectedRegions}</Text>
-          <Text>Reports received (7 days): {data.reportsReceived} ({data.casesReceived} cases)</Text>
-          <Text>Pending actions: {data.pendingActions ?? 'n/a'}</Text>
-          <Text style={{ fontWeight: 'bold', marginTop: 12 }}>Disease activity (last 7 days)</Text>
-          <Text selectable>{JSON.stringify(data.activity, null, 2)}</Text>
-          <Text style={{ fontWeight: 'bold', marginTop: 12 }}>Latest alerts</Text>
-          {data.latestAlerts.map((a) => (
-            <Text key={a.id}>
-              {a.title} - {a.area_name ?? 'unknown area'} ({a.severity})
-            </Text>
-          ))}
-        </View>
-      )}
-    </ScrollView>
+    <DashboardView
+      isLoading={isLoading}
+      error={error?.message ?? null}
+      activeAlerts={data?.activeAlerts ?? 0}
+      highAlerts={data?.highAlerts ?? 0}
+      affectedRegions={data?.affectedRegions ?? 0}
+      reports={data?.reportsReceived ?? 0}
+      cases={data?.casesReceived ?? 0}
+      pendingActions={data?.pendingActions ?? null}
+      activity={(data?.activity ?? null) as Activity | null}
+      latestAlerts={(data?.latestAlerts ?? []).map((a) => ({
+        id: String(a.id),
+        title: a.title,
+        area: a.area_name ?? 'Unknown area',
+        severity: String(a.severity),
+      }))}
+      onReload={reload}
+    />
   );
 }
