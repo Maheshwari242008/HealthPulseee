@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
 
-export default function RoleSelectionScreen() {
+export default function HomeScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>user/role-selection</Text>
+      <Text style={styles.title}>user/(tabs)/home</Text>
       <Text>Coming soon</Text>
     </View>
   );
