@@ -1,15 +1,24 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Alert } from 'react-native';
+import { useRouter, type Href } from 'expo-router';
+import { signOut } from '@/services/authService';
+import MoreView from '@/components/admin/MoreView';
 
-export default function MoreScreen() {
+export default function More() {
+  const router = useRouter();
+
+  async function onLogout() {
+    try {
+      await signOut();
+      router.replace('/' as Href);
+    } catch (e) {
+      Alert.alert('Logout failed', e instanceof Error ? e.message : 'Logout failed');
+    }
+  }
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>(admin)/more</Text>
-      <Text>Coming soon</Text>
-    </View>
+    <MoreView
+      onAdministration={() => router.push('/(admin)/administration' as Href)}
+      onLogout={onLogout}
+    />
   );
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1, alignItems: "center", justifyContent: "center", gap: 8 },
-  title: { fontSize: 18, fontWeight: "600" },
-});

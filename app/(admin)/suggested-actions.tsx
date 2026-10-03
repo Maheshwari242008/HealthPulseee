@@ -1,15 +1,10 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Text, View } from 'react-native';
 
-export default function SuggestedActionsScreen() {
+// Placeholder so the route has a default export. Needs the gov_actions table first.
+export default function Screen() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>(admin)/suggested-actions</Text>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Coming soon</Text>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1, alignItems: "center", justifyContent: "center", gap: 8 },
-  title: { fontSize: 18, fontWeight: "600" },
-});
